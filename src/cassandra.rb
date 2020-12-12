@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-require_relative 'fortune'
+require_relative './lib/fortune'
 
 # Stuff to be assigned to classes during refactoring
 def pause()
