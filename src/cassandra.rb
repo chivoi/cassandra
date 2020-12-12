@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
 require_relative 'fortune'
 
+# Stuff to be assigned to classes during refactoring
 def pause()
   puts ""
   3.times do 
@@ -11,6 +12,26 @@ def pause()
 end
 
 fortunes_file = "./fortunes-from-cassandra.txt"
+
+# Handling command line arguments
+if ARGV.length > 0
+  flag, *rest = ARGV
+  ARGV.clear
+  case flag 
+  when '-h'
+    help = File.readlines("../README.md")
+    help.map{|line| puts line}
+    exit
+  when '-v'
+    puts "This is Cassandra 0.0.1\nIt uses Ruby version: #{RUBY_VERSION}"
+    exit
+  else
+      puts "Enter valid argument:"
+      puts "-h for programme info"
+      puts "-v for version info"
+      exit
+  end
+end 
 
 puts "Hello and welcome"
 
@@ -65,6 +86,4 @@ loop do
   else 
     "Invalid option" #raise ValidationError
   end
-
-
 end
