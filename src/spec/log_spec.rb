@@ -82,4 +82,16 @@ describe "log" do
       expect(@log.read_from_file.length).to be > length
     end
   end
+
+  describe ".delete_file" do
+    it "should be defined" do
+      expect(defined? @log.delete_file).to eq("method")
+    end
+
+    it "should delete the log file" do
+      @log.delete_file
+      expect(File).not_to exist(@log.file_path)
+    end
+  end
+
 end

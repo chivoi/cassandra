@@ -27,6 +27,10 @@ class Log
     File.open(@file_path, "a") {|file| file.write("\n#{Time.now.strftime("%d %B, %Y %H:%M")}\n#{self.display_fortunes.join("\n")}") }
   end
 
+  def delete_file
+    File.delete(@file_path)
+  end
+
 end
 
 # log = Log.new("Test", "../logs/test-log.txt")
