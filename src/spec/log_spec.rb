@@ -3,7 +3,7 @@ require_relative "../lib/fortune.rb"
 
 describe "log" do
   before(:each) do
-    @log = Log.new("Test log", "../logs/test-log.txt")
+    @log = Log.new("Test log", "./logs/test-log.txt")
     # @fortunes = File.readlines("../logs/test-log.txt").map{|fortune| fortune}
   end
   
@@ -24,7 +24,7 @@ describe "log" do
   end
 
   it "should have a file path that matches the file directory" do
-    expect(@log.file_path).to match(/^\.\.{1}\/logs\/\S+/)
+    expect(@log.file_path).to match(/^\.{1}\/logs\/\S+/)
   end
   
   describe ".add_fortune" do
@@ -36,6 +36,30 @@ describe "log" do
       length = @log.todays_fortunes.length
       fortune = Fortune.new.tell
       expect(@log.add_fortune(fortune).length).to be length+1
+    end
+  end
+
+  describe ".display_fortunes" do
+    it "should be defined" do
+      expect(defined? @log.display_fortunes).to eq("method")
+    end
+
+    it "should output fortunes log to screen" do
+      expect(@log.display_fortunes).to include(*@log.todays_fortunes)
+    end
+  end
+
+  describe ".read_from_file" do
+    it "should be defined" do
+      expect(defined? @log.read_from_file).to eq("method")
+    end
+
+    it "should return an array from the contents of file" do
+      expect(@log.read_from_file).to be_a Array
+    end
+
+    it 'should remove newlines from array entries' do
+      expect(@log.read_from_file[0]).not_to include("\n")
     end
   end
 end
