@@ -1,17 +1,10 @@
-# require 'httparty'
+require 'httparty'
 
 class Fortune
-# #   include HTTParty
-# #   base_uri "api.quotable.io/"
-#   # def initialize(fortune)
-#   #   @fortune = fortune
-#   # end
+  include HTTParty
+  base_uri "api.quotable.io/"
 
-# #   def quote
-# #     self.class.get('/random').parsed_response["content"]
-# #   end
-
-# #   def to_s
-# #     return "#{self.quote}"
-# #   end
+  def tell
+    return self.class.get('/random').parsed_response["content"]
+  end
 end

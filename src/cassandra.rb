@@ -49,7 +49,7 @@ loop do
     loop do
       todays_fortune = Fortune.new
       pause()
-      puts todays_fortune.quote
+      puts todays_fortune.tell
       File.open(fortunes_file, "a") {|file| file.write("#{Time.now.strftime("%d %B, %Y %H:%M")} - #{todays_fortune.to_s}\n") }
       puts "Would you like another? 1 yes 2 no"
       input = gets.strip.to_i
