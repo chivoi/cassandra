@@ -4,9 +4,7 @@ require_relative "../lib/fortune.rb"
 describe "log" do
   before(:each) do
     @log = Log.new("Test log", "../logs/test-log.txt")
-    @todays_fortunes = {}
-    @fortune = Fortune.new
-    @time = Time.now
+    # @fortunes = File.readlines("../logs/test-log.txt").map{|fortune| fortune}
   end
   
   it "should be an instance of a Log" do
@@ -17,8 +15,8 @@ describe "log" do
     expect(@log.name).to eq("Test log")
   end
   
-  it "should have an hash of fortunes" do
-    expect(@log.todays_fortunes).to be_a Hash
+  it "should have an array of fortunes" do
+    expect(@log.todays_fortunes).to be_a Array
   end
 
   it "should have a file path as String" do
@@ -34,8 +32,10 @@ describe "log" do
       expect(defined? @log.add_fortune).to eq("method")
     end
     
-    it "should add something to the hash of fortunes" do
-      expect(@log.add_fortune(@time, @fortune.tell)).not_to be_empty
+    it "should increase the length of the array of fortunes" do
+      length = @log.todays_fortunes.length
+      fortune = Fortune.new.tell
+      expect(@log.add_fortune(fortune).length).to be length+1
     end
   end
 end

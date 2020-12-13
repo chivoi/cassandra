@@ -1,20 +1,16 @@
 require_relative "fortune.rb"
 class Log
 
-  attr_reader :name, :file_path, :todays_fortunes
+  attr_reader :name, :todays_fortunes, :file_path
   
   def initialize(name, file_path)
     @name = name
+    @todays_fortunes = []
     @file_path = file_path
-    @todays_fortunes = {}
-    @time = Time.now.strftime("%d %B, %Y %H:%M")
-    @fortune = Fortune.new
+    @fortune = Fortune.new.tell.to_s
   end
 
-  def add_fortune(time, fortune)
-    @todays_fortunes < {@time => @fortune.tell.to_s}
+  def add_fortune(fortune)
+    return @todays_fortunes.push(fortune)
   end
 end
-
-log = Log.new("My prophesies", "../logs/test-log.txt")
-p todays_prophesies = log.add_fortune(Time.now, Fortune.new.tell)
