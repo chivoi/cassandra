@@ -15,14 +15,25 @@ class Log
   end
 
   def display_fortunes
-    return "Today's fortunes:\n#{todays_fortunes.each{|fortune| puts fortune}}"
+    return todays_fortunes.each{|fortune| fortune}
   end
 
   def read_from_file
     fortunes = File.readlines(@file_path).map{|fortune| fortune.strip}
     return fortunes
   end
+
+  def write_to_file
+    File.open(@file_path, "a") {|file| file.write("\n#{Time.now.strftime("%d %B, %Y %H:%M")}\n#{self.display_fortunes.join("\n")}") }
+  end
+
 end
 
-log = Log.new("Fortunes", "./logs/test-log.txt")
-p log.read_from_file
+# log = Log.new("Test", "../logs/test-log.txt")
+
+# 2.times do 
+#   fortune = Fortune.new.tell
+#   log.add_fortune(fortune)
+# end
+
+# log.write_to_file

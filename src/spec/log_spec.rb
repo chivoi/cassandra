@@ -4,7 +4,6 @@ require_relative "../lib/fortune.rb"
 describe "log" do
   before(:each) do
     @log = Log.new("Test log", "./logs/test-log.txt")
-    # @fortunes = File.readlines("../logs/test-log.txt").map{|fortune| fortune}
   end
   
   it "should be an instance of a Log" do
@@ -60,6 +59,27 @@ describe "log" do
 
     it 'should remove newlines from array entries' do
       expect(@log.read_from_file[0]).not_to include("\n")
+    end
+
+    it 'should populate array with fortunes from file' do
+      fortunes = File.readlines("./logs/test-log.txt").map{|fortune| fortune.strip}
+      expect(@log.read_from_file).to include(fortunes[0])
+    end
+  end
+
+  describe ".write_to_file" do
+    it "should be defined" do
+      expect(defined? @log.write_to_file).to eq("method")
+    end
+
+    it "should append fortunes into the file" do
+      2.times do 
+        fortune = Fortune.new.tell
+        @log.add_fortune(fortune)
+      end
+      length = @log.read_from_file.length
+      @log.write_to_file
+      expect(@log.read_from_file.length).to be > length
     end
   end
 end
