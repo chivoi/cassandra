@@ -1,10 +1,9 @@
-require_relative "fortuneteller.rb"
+require_relative "fortuneteller"
 class Log
 
-  attr_reader :name, :todays_fortunes, :file_path
+  attr_reader :todays_fortunes, :file_path
   
-  def initialize(name, file_path)
-    @name = name
+  def initialize(file_path)
     @file_path = file_path
     @todays_fortunes = []
     @fortune = FortuneTeller.new("Cassandra").tell_fortune
@@ -19,7 +18,14 @@ class Log
   end
 
   def read_from_file
-    fortunes = File.readlines(@file_path).map{|fortune| fortune.strip}
+    begin
+      fortunes = File.readlines(@file_path).map{|fortune| fortune.strip}
+    rescue
+      puts "Looks like you don't have any saved fortunes yet. Creating your personal Fortunes Book."
+      puts "Invalid path. Creating file"
+      File.open("./logs/fortunes-from-cassandra.txt", "w") {|file| file.write("")}
+      fortunes = @todays_fortunes
+    end
     return fortunes
   end
 
@@ -32,12 +38,3 @@ class Log
   end
 
 end
-
-# log = Log.new("Test", "")
-
-# 2.times do 
-#   fortune = Fortune.new.tell
-#   log.add_fortune(fortune)
-# end
-
-# log.write_to_file

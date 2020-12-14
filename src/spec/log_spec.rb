@@ -3,7 +3,7 @@ require_relative "../lib/fortuneteller.rb"
 
 describe "log" do
   before(:each) do
-    @log = Log.new("Test log", "./logs/test-log.txt")
+    @log = Log.new("./logs/test-log.txt")
     @cassandra = FortuneTeller.new("Cassandra")
   end
   
@@ -11,8 +11,8 @@ describe "log" do
     expect(@log).to be_a Log
   end
 
-  it "should initialize with a name" do
-    expect(@log.name).to eq("Test log")
+  it "should initialize with a file path that matches the file directory" do
+    expect(@log.file_path).to match(/^\.{1}\/logs\/\S+/)
   end
   
   it "should have an array of fortunes" do
@@ -21,10 +21,6 @@ describe "log" do
 
   it "should have a file path as String" do
     expect(@log.file_path).to be_an_instance_of(String)
-  end
-
-  it "should have a file path that matches the file directory" do
-    expect(@log.file_path).to match(/^\.{1}\/logs\/\S+/)
   end
   
   describe ".add_fortune" do
@@ -66,6 +62,12 @@ describe "log" do
       fortunes = File.readlines("./logs/test-log.txt").map{|fortune| fortune.strip}
       expect(@log.read_from_file).to include(fortunes[0])
     end
+
+    it "should create file if no file found" do
+      empty_log = Log.new("")
+      empty_log.read_from_file
+      expect(File).to exist(@log.file_path)
+    end
   end
 
   describe ".write_to_file" do
@@ -82,12 +84,6 @@ describe "log" do
       @log.write_to_file
       expect(@log.read_from_file.length).to be > length
     end
-
-    # it "should create file if no file found" do
-    #   file_path = nil
-    #   @log.write_to_file
-    #   expect(File).to exist(@log.file_path)
-    # end
   end
 
   describe ".delete_file" do

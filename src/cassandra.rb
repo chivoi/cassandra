@@ -1,5 +1,6 @@
 #!/usr/bin/ruby
-require_relative './lib/fortune'
+require_relative './lib/fortuneteller'
+require_relative './lib/log'
 
 fortunes_file = "./fortunes-from-cassandra.txt"
 
