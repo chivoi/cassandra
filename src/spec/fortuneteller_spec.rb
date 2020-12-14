@@ -1,6 +1,5 @@
 require_relative "../lib/fortuneteller"
 require_relative "../lib/log"
-require_relative "../lib/fortune"
 
 describe 'FortuneTeller' do
   before(:each) do
@@ -24,5 +23,14 @@ describe 'FortuneTeller' do
     it "should display a progress bar" do
       expect{ print(@fortuneteller.consult_spirits) }.to output.to_stdout
     end 
+  end
+  describe '.tell_fortune' do
+    it 'should be defined' do
+      expect(defined? @fortuneteller.tell_fortune).to eq('method')
+    end
+
+    it 'should get a string quote from quotable API' do
+      expect(@fortuneteller.tell_fortune).to be_a String
+     end
   end
 end

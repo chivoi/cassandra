@@ -1,9 +1,10 @@
 require_relative "../lib/log.rb"
-require_relative "../lib/fortune.rb"
+require_relative "../lib/fortuneteller.rb"
 
 describe "log" do
   before(:each) do
     @log = Log.new("Test log", "./logs/test-log.txt")
+    @cassandra = FortuneTeller.new("Cassandra")
   end
   
   it "should be an instance of a Log" do
@@ -33,7 +34,7 @@ describe "log" do
     
     it "should increase the length of the array of fortunes" do
       length = @log.todays_fortunes.length
-      fortune = Fortune.new.tell
+      fortune = @cassandra.tell_fortune
       expect(@log.add_fortune(fortune).length).to be length+1
     end
   end
@@ -74,7 +75,7 @@ describe "log" do
 
     it "should append fortunes into the file" do
       2.times do 
-        fortune = Fortune.new.tell
+        fortune = @cassandra.tell_fortune
         @log.add_fortune(fortune)
       end
       length = @log.read_from_file.length

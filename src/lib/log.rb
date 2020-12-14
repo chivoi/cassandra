@@ -1,4 +1,4 @@
-require_relative "fortune.rb"
+require_relative "fortuneteller.rb"
 class Log
 
   attr_reader :name, :todays_fortunes, :file_path
@@ -7,7 +7,7 @@ class Log
     @name = name
     @file_path = file_path
     @todays_fortunes = []
-    @fortune = Fortune.new.tell
+    @fortune = FortuneTeller.new("Cassandra").tell_fortune
   end
 
   def add_fortune(fortune)
