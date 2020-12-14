@@ -5,7 +5,9 @@ Cassandra tells you your fortune or who you were in your past life. After you've
 ## Command line options
 Cassandra accepts following command line options: 
 - `-h` for programme info
-- `-v` for Cassandra and ruby verison info
+- `-v` for Cassandra and Ruby verison info
+- `-p file/path` to pass in your previous fortunes
+- `-n` YourName to let Cassandra know your name
 ## Gems
 Httparty to interact with external API-s.
 ruby-progressbar for the progress bar.

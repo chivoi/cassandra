@@ -10,8 +10,8 @@ class FortuneTeller
     @name = name
   end
 
-  def greet()
-    return "Hello and welcome! I am #{@name}, your most truthful fortune teller.\n I talk to SPIRITS, and SPIRITS never lie. \n Are you ready to look your destiny in the eye?"
+  def greet(username = "Traveller")
+    return "Hello and welcome#{username}! I am #{@name}, your most truthful fortune teller.\n I talk to SPIRITS, and SPIRITS never lie. \n Are you ready to look your destiny in the eye?"
   end
 
   def farewell()

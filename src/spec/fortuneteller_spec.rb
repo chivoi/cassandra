@@ -18,6 +18,12 @@ describe 'FortuneTeller' do
     it "should display a greeting" do
       expect(@fortuneteller.greet).to be_a String
     end 
+    it "should greet the user by name" do
+      expect(@fortuneteller.greet("Ana")).to include("Ana")
+    end
+    it "should use Traveller when no name is passed" do
+      expect(@fortuneteller.greet).to include("Traveller")
+    end
   end
 
   describe '.farewell' do
