@@ -33,7 +33,7 @@ class Log
 
 end
 
-# log = Log.new("Test", "../logs/test-log.txt")
+# log = Log.new("Test", "")
 
 # 2.times do 
 #   fortune = Fortune.new.tell

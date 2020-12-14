@@ -81,6 +81,12 @@ describe "log" do
       @log.write_to_file
       expect(@log.read_from_file.length).to be > length
     end
+
+    # it "should create file if no file found" do
+    #   file_path = nil
+    #   @log.write_to_file
+    #   expect(File).to exist(@log.file_path)
+    # end
   end
 
   describe ".delete_file" do
@@ -92,6 +98,8 @@ describe "log" do
       @log.delete_file
       expect(File).not_to exist(@log.file_path)
     end
+
+    File.open("./logs/test-log.txt", "w") {|file| file.write("The future is unclear")}
   end
 
 end

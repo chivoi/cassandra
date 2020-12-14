@@ -1,16 +1,6 @@
 #!/usr/bin/ruby
 require_relative './lib/fortune'
 
-# Stuff to be assigned to classes during refactoring
-def pause()
-  puts ""
-  3.times do 
-      sleep(2/3.0) 
-      print "."
-  end 
-  puts ""
-end
-
 fortunes_file = "./fortunes-from-cassandra.txt"
 
 # Handling command line arguments

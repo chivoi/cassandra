@@ -10,7 +10,7 @@ describe 'fortune' do
     expect(@fortune).to be_a Fortune
   end
 
-  describe 'tell' do
+  describe '.tell' do
 
     it 'should be defined' do
       expect(defined? @fortune.tell).to eq('method')
