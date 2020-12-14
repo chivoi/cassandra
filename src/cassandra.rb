@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
 require_relative './lib/fortuneteller'
 require_relative './lib/log'
+require_relative './lib/errors'
 
 # Handling command line arguments
 if ARGV.length > 0
@@ -25,25 +26,28 @@ if ARGV.length > 0
 end 
 
 cassandra = FortuneTeller.new("Cassandra")
+fortunes_book = Log.new(file_path)
 
 puts cassandra.greet(username)
+sleep 1.5
+puts cassandra.clear_screen
 
 # Main programme loop
-begin
+# begin
   loop do
-    cassandra.output_options
+    puts cassandra.output_options
     asnwer = gets.strip.to_i
 
     case asnwer
     when 1 
       loop do
-        cassandra.consult_spirits
+        puts cassandra.consult_spirits
         puts cassandra.tell_fortune
-        cassandra.write_to_file
+        fortunes_book.write_to_file
         puts "\nWould you like me to save it to your Fortunes Book? Y/N"
         answer = gets.strip.downcase
-        if answer == "y" || answer = "yes"
-          cassandra.read_from_file.write_to_file
+        if answer == "y" || answer == "yes"
+          fortunes_book.read_from_file.write_to_file
           puts "\nDone!"
         end
         puts "\nWould you like another prediction? Y/N"
@@ -52,14 +56,13 @@ begin
       end
       cassandra.clear_screen
     when 2
-      fortunes_book = Log.new(file_path) #put the ARGV file path?
       cassandra.consult_spirits 
       puts fortunes_book.read_from_file
-      clear_screen()
+      cassandra.clear_screen()
     when 3
       puts "\nWould you like to save your Fortunes Book? Y/N"
       answer = gets.strip.downcase
-        if answer == "y" || answer = "yes"
+        if answer == "y" || answer == "yes"
           puts "\nSaved here: #{fortunes_book.show_file_path}"
         elsif answer == "n" || answer == "no"
           fortunes_book.delete_file
@@ -70,12 +73,10 @@ begin
     else 
       raise ValidationError
     end
-    cassandra.clear_aura.clear_screen
+    cassandra.clear_aura
+    cassandra.clear_screen
   end
-rescue ValidationError
-  ValidationError.new.message
-  retry
-rescue
-  puts "\nThe future is unclear. Try again later."
-  exit
-end
+# rescue
+#   puts "\nThe future is unclear. Try again later."
+#   exit
+# end

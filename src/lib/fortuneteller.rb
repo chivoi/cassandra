@@ -11,15 +11,15 @@ class FortuneTeller
   end
 
   def greet(username = "Traveller")
-    return "Hello and welcome#{username}! I am #{@name}, your most truthful fortune teller.\n I talk to SPIRITS, and SPIRITS never lie. \n Are you ready to look your destiny in the eye?"
+    return "Hello and welcome #{username}! I am #{@name}, your most truthful fortune teller.\nI talk to the SPIRITS, and the SPIRITS never lie.\nAre you ready to look your destiny in the eye?\n"
   end
 
-  def farewell()
-    return "I hope you found what you were looking for. Farewell!"
+  def farewell(username = "Traveller")
+    return "I hope you found what you were looking for #{username}. Farewell!"
   end
 
   def output_options()
-    return "Options:\n1) What does my future hold?\n2) Display my fortunes\n3)Bye Cassandra"
+    return "Options:\n1) What does my future hold?\n2) Display my fortunes\n3) Bye Cassandra\n"
   end
 
   def clear_aura()
@@ -39,7 +39,7 @@ class FortuneTeller
   def clear_screen()
     puts "Press any key to continue"
       gets
-      cassandra.clear_aura
+      self.clear_aura
       system "clear"
   end
 end

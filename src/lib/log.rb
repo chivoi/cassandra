@@ -21,7 +21,7 @@ class Log
     begin
       fortunes = File.readlines(@file_path).map{|fortune| fortune.strip}
     rescue
-      puts "Looks like you don't have any saved fortunes yet. Creating your personal Fortunes Book."
+      puts "Looks like you don't have any saved fortunes yet. Creating your personal Fortunes Book.\n"
       File.open("./logs/fortunes-from-cassandra.txt", "w") {|file| file.write("")}
       fortunes = @todays_fortunes
     end
@@ -29,7 +29,7 @@ class Log
   end
 
   def write_to_file
-    File.open(@file_path, "a") {|file| file.write("\n#{Time.now.strftime("%d %B, %Y %H:%M")}\n#{self.display_fortunes.join("\n")}") }
+      File.open(@file_path, "a") {|file| file.write("\n#{Time.now.strftime("%d %B, %Y %H:%M")}\n#{self.display_fortunes.join("\n")}") }
   end
 
   def delete_file

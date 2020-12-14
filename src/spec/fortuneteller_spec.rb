@@ -29,7 +29,13 @@ describe 'FortuneTeller' do
   describe '.farewell' do
     it "should display a greeting" do
       expect(@fortuneteller.farewell).to be_a String
-    end 
+    end
+    it "should use the username" do
+      expect(@fortuneteller.farewell("Ana")).to include("Ana")
+    end
+    it "should use Traveller when no name is passed" do
+      expect(@fortuneteller.farewell).to include("Traveller")
+    end
   end
   
   describe '.output_options' do
