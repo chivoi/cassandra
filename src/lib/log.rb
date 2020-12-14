@@ -22,7 +22,6 @@ class Log
       fortunes = File.readlines(@file_path).map{|fortune| fortune.strip}
     rescue
       puts "Looks like you don't have any saved fortunes yet. Creating your personal Fortunes Book."
-      puts "Invalid path. Creating file"
       File.open("./logs/fortunes-from-cassandra.txt", "w") {|file| file.write("")}
       fortunes = @todays_fortunes
     end

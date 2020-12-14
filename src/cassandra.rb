@@ -2,8 +2,6 @@
 require_relative './lib/fortuneteller'
 require_relative './lib/log'
 
-fortunes_file = "./fortunes-from-cassandra.txt"
-
 # Handling command line arguments
 if ARGV.length > 0
   flag, *rest = ARGV
@@ -24,32 +22,42 @@ if ARGV.length > 0
   end
 end 
 
-puts "Hello and welcome"
+cassandra = FortuneTeller.new("Cassandra")
+
+puts cassandra.greet
 
 # Main programme loop
 loop do
-  puts "Options:"
-  puts "1) What's in my nearest future?"
-  puts "2) Display my fortunes"
-  puts "3) Quit"
-
+  cassandra.output_options
   asnwer = gets.strip.to_i
 
   case asnwer
   when 1 
     loop do
-      todays_fortune = Fortune.new
-      pause()
-      puts todays_fortune.tell
-      File.open(fortunes_file, "a") {|file| file.write("#{Time.now.strftime("%d %B, %Y %H:%M")} - #{todays_fortune.to_s}\n") }
-      puts "\nWould you like another? 1 yes 2 no"
-      input = gets.strip.to_i
-      break if input == 2
+      cassandra.consult_spirits
+      puts cassandra.tell_fortune
+      cassandra.write_to_file
+      puts "Would you like me to save it to your Fortunes Book? Y/N"
+      answer = gets.strip.downcase
+      if answer == "y" || answer = "yes"
+        cassandra.read_from_file.write_to_file
+        puts "Done!"
+      end
+      puts "\nWould you like another prediction? Y/N"
+      input = gets.strip.downcase
+      break if input == "n" || input == "no"
     end
     puts "Press any key to continue"
       gets
+      cassandra.clear_aura
       system "clear"
   when 2
+    fortunes_book = Log.new(file_path) #put the ARGV file path?
+    cassandra.consult_spirits 
+    fortunes_book.read_from_file
+    
+    #start here
+    
     if File.exist?(fortunes_file)
       pause()
       File.readlines(fortunes_file).map {|fortune| puts fortune}

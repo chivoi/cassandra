@@ -19,11 +19,25 @@ describe 'FortuneTeller' do
       expect(@fortuneteller.greet).to be_a String
     end 
   end
+  
+  describe '.output_options' do
+    it "should display options" do
+      expect(@fortuneteller.output_options).to be_a String
+    end
+  end
+
   describe '.consult_spirits' do
     it "should display a progress bar" do
       expect{ print(@fortuneteller.consult_spirits) }.to output.to_stdout
     end 
   end
+
+  describe '.clear_aura' do
+    it "should display a progress bar" do
+      expect{ print(@fortuneteller.clear_aura) }.to output.to_stdout
+    end 
+  end
+
   describe '.tell_fortune' do
     it 'should be defined' do
       expect(defined? @fortuneteller.tell_fortune).to eq('method')
