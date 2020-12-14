@@ -14,6 +14,10 @@ class FortuneTeller
     return "Hello and welcome! I am #{@name}, your most truthful fortune teller.\n I talk to SPIRITS, and SPIRITS never lie. \n Are you ready to look your destiny in the eye?"
   end
 
+  def farewell()
+    return "I hope you found what you were looking for. Farewell!"
+  end
+
   def output_options()
     return "Options:\n1) What does my future hold?\n2) Display my fortunes\n3)Bye Cassandra"
   end
@@ -30,5 +34,12 @@ class FortuneTeller
 
   def tell_fortune()
     return self.class.get('/random').parsed_response["content"]
+  end
+
+  def clear_screen()
+    puts "Press any key to continue"
+      gets
+      cassandra.clear_aura
+      system "clear"
   end
 end

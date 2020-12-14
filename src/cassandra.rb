@@ -47,40 +47,22 @@ loop do
       input = gets.strip.downcase
       break if input == "n" || input == "no"
     end
-    puts "Press any key to continue"
-      gets
-      cassandra.clear_aura
-      system "clear"
+    cassandra.clear_screen
   when 2
     fortunes_book = Log.new(file_path) #put the ARGV file path?
     cassandra.consult_spirits 
-    fortunes_book.read_from_file
-    
-    #start here
-    
-    if File.exist?(fortunes_file)
-      pause()
-      File.readlines(fortunes_file).map {|fortune| puts fortune}
-      puts "Save your fortunes? 1 yes 2 no"
-      input = gets.strip.to_i
-      if input == 2
-        File.delete("fortunes-from-cassandra.txt")
-      elsif input == 1
-        puts "Saved here: #{File.expand_path(File.dirname(fortunes_file))}"
-      end
-    else
-      puts "No fortunes yet. Let\'s give you your first one!"
-    end
+    puts fortunes_book.read_from_file
+    clear_screen()
   when 3
-    if File.exist?(fortunes_file)
-      puts "Save your fortunes? 1 yes 2 no"
-      input = gets.strip.to_i
-      if input == 2
-        File.delete("fortunes-from-cassandra.txt")
-      elsif input == 1
-        puts "Saved here: #{File.expand_path(File.dirname(fortunes_file))}"
+    puts "Would you like to save your Fortunes Book? Y/N"
+    answer = gets.strip.downcase
+      if answer == "y" || answer = "yes"
+        puts "Saved here: #{fortunes_book.show_file_path}"
+      elsif answer == "n" || answer == "no"
+        fortunes_book.delete_file
+        puts "Done!"
       end
-    end
+    cassandra.clear_aura.farewell
     exit
   else 
     "Invalid option" #raise ValidationError

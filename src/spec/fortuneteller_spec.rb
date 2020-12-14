@@ -19,6 +19,12 @@ describe 'FortuneTeller' do
       expect(@fortuneteller.greet).to be_a String
     end 
   end
+
+  describe '.farewell' do
+    it "should display a greeting" do
+      expect(@fortuneteller.farewell).to be_a String
+    end 
+  end
   
   describe '.output_options' do
     it "should display options" do

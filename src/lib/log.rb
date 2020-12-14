@@ -36,4 +36,8 @@ class Log
     File.delete(@file_path)
   end
 
+  def show_file_path
+    File.expand_path(File.dirname(@file_path))
+  end
+
 end

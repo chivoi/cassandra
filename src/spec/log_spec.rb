@@ -86,6 +86,12 @@ describe "log" do
     end
   end
 
+  describe ".show_file_path" do
+    it 'should output the file path to the screen' do
+      expect(@log.show_file_path). to include("logs")
+    end
+  end
+
   describe ".delete_file" do
     it "should be defined" do
       expect(defined? @log.delete_file).to eq("method")
