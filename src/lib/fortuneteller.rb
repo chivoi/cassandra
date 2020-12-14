@@ -3,12 +3,11 @@ require 'httparty'
 class FortuneTeller
   include HTTParty
   base_uri "api.quotable.io/"
-  
-  attr_reader :name, :fortune
+
+  attr_reader :name
 
   def initialize(name)
     @name = name
-    @fortune = self.tell_fortune
   end
 
   def greet()
