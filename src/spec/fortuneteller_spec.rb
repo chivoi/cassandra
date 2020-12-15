@@ -1,5 +1,7 @@
 require_relative "../lib/fortuneteller"
 require_relative "../lib/log"
+require_relative "../lib/previous_life"
+require "terminal-table"
 
 describe 'FortuneTeller' do
   before(:each) do
@@ -64,5 +66,15 @@ describe 'FortuneTeller' do
     it 'should get a string quote from quotable API' do
       expect(@fortuneteller.tell_fortune).to be_a String
      end
+  end
+  
+  describe '.tell_previous_life' do
+    it 'should be defined' do
+      expect(defined? @fortuneteller.tell_previous_life).to eq('method')
+    end
+    it 'should return a table from PreviousLife class' do
+      prevlife = PreviousLife.new
+      expect(@fortuneteller.tell_previous_life).to be_a Terminal::Table
+    end
   end
 end

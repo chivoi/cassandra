@@ -1,5 +1,7 @@
+require_relative './previous_life'
 require 'ruby-progressbar'
 require 'httparty'
+
 class FortuneTeller
   include HTTParty
   base_uri "api.quotable.io/"
@@ -19,7 +21,7 @@ class FortuneTeller
   end
 
   def output_options()
-    return "Options:\n1) What does my future hold?\n2) Display my fortunes\n3) Bye Cassandra\n"
+    return "Options:\n1) What does my future hold?\n2) Who was I in previous life?\n3) Display my fortunes\n4) Bye Cassandra\n"
   end
 
   def clear_aura()
@@ -35,6 +37,11 @@ class FortuneTeller
   def tell_fortune()
     fortune = self.class.get('/random').parsed_response["content"]
     return "\n#{fortune}"
+  end
+
+  def tell_previous_life()
+    fortune = PreviousLife.new.display_previous_life()
+    return fortune
   end
 
   def clear_screen()

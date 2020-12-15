@@ -2,6 +2,7 @@
 require_relative './lib/fortuneteller'
 require_relative './lib/log'
 require_relative './lib/errors'
+require_relative './lib/previous_life'
 
 # Handling command line arguments
 if ARGV.length > 0
@@ -59,6 +60,19 @@ cassandra.clear_screen
       end
       cassandra.clear_screen
     when 2
+      puts cassandra.consult_spirits
+        previous_life = cassandra.tell_previous_life
+        puts previous_life
+        fortunes_book.add_fortune(previous_life)
+        sleep 2
+        puts "\nWould you like me to save it to your Fortunes Book? Y/N\n"
+        answer = gets.strip.downcase
+        if answer == "y" || answer == "yes"
+          fortunes_book.write_to_file(previous_life)
+          puts "\nDone!\n"
+        end
+        cassandra.clear_screen
+    when 3
       cassandra.consult_spirits
       if File.exist?(fortunes_book.file_path)
         if fortunes_book.todays_fortunes.length > 0

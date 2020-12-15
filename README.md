@@ -11,5 +11,6 @@ Cassandra accepts following command line options:
 ## Gems
 Httparty to interact with external API-s.
 ruby-progressbar for the progress bar.
+terminal-table
 ## API-s
 - Quotable, for more details, [check the documentation](https://github.com/lukePeavey/quotable#get-random-quote)
