@@ -75,7 +75,7 @@ describe "log" do
       expect(defined? @log.write_to_file).to eq("method")
     end
 
-    it "should append fortunes into the file" do
+    it "should append to the file" do
       2.times do 
         fortune = @cassandra.tell_fortune
         @log.add_fortune(fortune)
@@ -84,6 +84,13 @@ describe "log" do
       @log.write_to_file
       expect(@log.read_from_file.length).to be > length
     end
+    
+    # it "should append the fortunes text to the file" do
+    #   fortune = @cassandra.tell_fortune
+    #   @log.add_fortune(fortune)
+      
+    # end
+
   end
 
   describe ".show_file_path" do

@@ -30,7 +30,7 @@ fortunes_book ||= Log.new("./logs/fortunes-from-cassandra.txt")
 
 puts cassandra.greet(username)
 sleep 1.5
-puts cassandra.clear_screen
+cassandra.clear_screen
 
 # Main programme loop
 # begin
@@ -42,16 +42,18 @@ puts cassandra.clear_screen
     when 1 
       loop do
         puts cassandra.consult_spirits
-        puts cassandra.tell_fortune
-        fortunes_book.write_to_file
-        puts "\nWould you like me to save it to your Fortunes Book? Y/N"
+        fortune = cassandra.tell_fortune
+        puts fortune
+        fortunes_book.add_fortune(fortune)
+        sleep 1.5
+        puts "\nWould you like me to save it to your Fortunes Book? Y/N\n"
         answer = gets.strip.downcase
         if answer == "y" || answer == "yes"
-          fortunes_book.read_from_file
-          fortunes_book.write_to_file
-          puts "\nDone!"
+          # fortunes_book.read_from_file
+          fortunes_book.write_to_file(fortune)
+          puts "\nDone\n!"
         end
-        puts "\nWould you like another prediction? Y/N"
+        puts "\nWould you like another fortune? Y/N\n"
         input = gets.strip.downcase
         break if input == "n" || input == "no"
       end
@@ -61,21 +63,22 @@ puts cassandra.clear_screen
       puts fortunes_book.read_from_file
       cassandra.clear_screen()
     when 3
-      puts "\nWould you like to save your Fortunes Book? Y/N"
-      answer = gets.strip.downcase
+      if File.exist?(fortunes_book.file_path)
+        puts "\nWould you like to save your Fortunes Book? Y - keep /  N - delete\n"
+        answer = gets.strip.downcase
         if answer == "y" || answer == "yes"
-          puts "\nSaved here: #{fortunes_book.show_file_path}"
+          puts "\nSaved here: #{fortunes_book.show_file_path}\n"
         elsif answer == "n" || answer == "no"
           fortunes_book.delete_file
-          puts "\nDone!"
+          puts "\nFortunes Book deleted!\n"
         end
+      end
       cassandra.clear_aura
-      cassandra.farewell
+      puts cassandra.farewell
       exit
     else 
       raise ValidationError
     end
-    cassandra.clear_aura
     cassandra.clear_screen
   end
 # rescue

@@ -15,7 +15,7 @@ class FortuneTeller
   end
 
   def farewell(username = "Traveller")
-    return "I hope you found what you were looking for #{username}. Farewell!"
+    return "\nI hope you found what you were looking for #{username}. Farewell!"
   end
 
   def output_options()
@@ -33,11 +33,12 @@ class FortuneTeller
   end
 
   def tell_fortune()
-    return self.class.get('/random').parsed_response["content"]
+    fortune = self.class.get('/random').parsed_response["content"]
+    return "\n#{fortune}"
   end
 
   def clear_screen()
-    puts "Press any key to continue"
+    puts "\nPress any key to continue"
       gets
       self.clear_aura
       system "clear"

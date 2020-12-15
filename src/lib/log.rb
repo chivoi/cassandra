@@ -28,8 +28,8 @@ class Log
     return fortunes
   end
 
-  def write_to_file
-      File.open(@file_path, "a") {|file| file.write("\n#{Time.now.strftime("%d %B, %Y %H:%M")}\n#{self.display_fortunes.join("\n")}") }
+  def write_to_file(fortune)
+      File.open(@file_path, "a") {|file| file.write("\n\n#{Time.now.strftime("%d %B, %Y %H:%M")}\n#{fortune}") }
   end
 
   def delete_file
