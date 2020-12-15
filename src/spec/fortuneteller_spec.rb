@@ -39,12 +39,6 @@ describe 'FortuneTeller' do
       expect(@fortuneteller.farewell).to include("Traveller")
     end
   end
-  
-  describe '.output_options' do
-    it "should display options" do
-      expect(@fortuneteller.output_options).to be_a String
-    end
-  end
 
   describe '.consult_spirits' do
     it "should display a progress bar" do

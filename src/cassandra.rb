@@ -33,6 +33,8 @@ end
 cassandra = FortuneTeller.new("Cassandra")
 fortunes_book ||= Log.new("./logs/fortunes-from-cassandra.txt")
 
+system "clear"
+
 heading = Artii::Base.new :font => 'nancyj-underlined'
 puts heading.asciify('Cassandra')
 
@@ -42,10 +44,16 @@ sleep 1.5
 # Main programme loop
 # begin
   loop do
-    puts cassandra.output_options
-    asnwer = gets.strip.to_i
-
-    case asnwer
+    notice = Pastel.new.bright_magenta.detach
+    prompt = TTY::Prompt.new(active_color: notice) 
+    choices = [
+      {name: "What does my future hold", value: 1},
+      {name: "Who was I in previous life", value: 2},
+      {name: "Display my fortunes", value: 3},
+      {name: "Bye Cassandra!", value: 4}
+    ]
+    answer = prompt.select("\nWhat can I do for you?", choices, symbols: { marker: "~" })
+    case answer
     when 1 
       loop do
         puts cassandra.consult_spirits

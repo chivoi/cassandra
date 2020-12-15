@@ -21,17 +21,18 @@ class FortuneTeller
     return "\nI hope you found what you were looking for #{username}. Farewell!"
   end
 
-  def output_options()
-    prompt = TTY::Prompt.new 
-    prompt.select("\nWhat can I do for you?") do |menu|
-      menu.choice "What does my future hold", 1
-      menu.choice "Who was I in previous life", 2
-      menu.choice "Display my fortunes", 3
-      menu.choice "Bye Cassandra!", 4
-    end
-
-    # return "Options:\n1) What does my future hold?\n2) Who was I in previous life?\n3) Display my fortunes\n4) Bye Cassandra\n"
-  end
+  # def output_options()
+  #   notice = Pastel.new.bright_magenta.detach
+  #   prompt = TTY::Prompt.new(active_color: notice) 
+  #   choices = [
+  #     {name: "What does my future hold", value: 1},
+  #     {name: "Who was I in previous life", value: 2},
+  #     {name: "Display my fortunes", value: 3},
+  #     {name: "Bye Cassandra!", value: 4}
+  #   ]
+  #   answer = prompt.select("\nWhat can I do for you?", choices, symbols: { marker: "~" })
+  #   return answer
+  # end
 
   def clear_aura()
     progressbar = ProgressBar.create(title: "Clearning aura", unknown_progress_animation_steps: ['~~--', '-~~-', '--~~'], total: nil)
