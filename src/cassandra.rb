@@ -3,6 +3,8 @@ require_relative './lib/fortuneteller'
 require_relative './lib/log'
 require_relative './lib/errors'
 require_relative './lib/previous_life'
+require 'artii'
+require 'tty-markdown'
 
 # Handling command line arguments
 if ARGV.length > 0
@@ -10,8 +12,10 @@ if ARGV.length > 0
   ARGV.clear
   case flag 
   when '-h'
-    help = File.readlines("../README.md")
-    help.map{|line| puts line}
+    # help = File.readlines("../README.md")
+    # help.map{|line| puts line}
+    parsed = TTY::Markdown.parse_file("../README.md")
+    puts parsed
     exit
   when '-p'
     file_path = Log.new(rest[0])
@@ -28,6 +32,9 @@ end
 
 cassandra = FortuneTeller.new("Cassandra")
 fortunes_book ||= Log.new("./logs/fortunes-from-cassandra.txt")
+
+heading = Artii::Base.new :font => 'nancyj-underlined'
+puts heading.asciify('Cassandra')
 
 puts cassandra.greet(username)
 sleep 1.5
