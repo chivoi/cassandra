@@ -26,7 +26,7 @@ if ARGV.length > 0
 end 
 
 cassandra = FortuneTeller.new("Cassandra")
-fortunes_book = Log.new(file_path)
+fortunes_book ||= Log.new("./logs/fortunes-from-cassandra.txt")
 
 puts cassandra.greet(username)
 sleep 1.5
@@ -47,7 +47,8 @@ puts cassandra.clear_screen
         puts "\nWould you like me to save it to your Fortunes Book? Y/N"
         answer = gets.strip.downcase
         if answer == "y" || answer == "yes"
-          fortunes_book.read_from_file.write_to_file
+          fortunes_book.read_from_file
+          fortunes_book.write_to_file
           puts "\nDone!"
         end
         puts "\nWould you like another prediction? Y/N"
@@ -68,7 +69,8 @@ puts cassandra.clear_screen
           fortunes_book.delete_file
           puts "\nDone!"
         end
-      cassandra.clear_aura.farewell
+      cassandra.clear_aura
+      cassandra.farewell
       exit
     else 
       raise ValidationError
