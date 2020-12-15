@@ -20,7 +20,7 @@ if ARGV.length > 0
     puts "This is Cassandra 0.0.1\nIt uses Ruby version: #{RUBY_VERSION}"
     exit
   else
-      puts "Enter valid argument:\n-h for programme info\n-v for version info\n-p file/path to pass in your previous fortunes\n-n YourName to let Cassandra know your name" 
+      puts "Enter valid argument:\n-h for programme info\n-v for version info\n-p file/path to pass in your previous fortunes\n-n YourName to let Cassandra know your name before your seance starts" 
       exit
   end
 end 
@@ -45,22 +45,34 @@ cassandra.clear_screen
         fortune = cassandra.tell_fortune
         puts fortune
         fortunes_book.add_fortune(fortune)
-        sleep 1.5
+        sleep 2
         puts "\nWould you like me to save it to your Fortunes Book? Y/N\n"
         answer = gets.strip.downcase
         if answer == "y" || answer == "yes"
-          # fortunes_book.read_from_file
           fortunes_book.write_to_file(fortune)
-          puts "\nDone\n!"
+          puts "\nDone!\n"
         end
+        cassandra.clear_screen
         puts "\nWould you like another fortune? Y/N\n"
         input = gets.strip.downcase
         break if input == "n" || input == "no"
       end
       cassandra.clear_screen
     when 2
-      cassandra.consult_spirits 
-      puts fortunes_book.read_from_file
+      cassandra.consult_spirits
+      if File.exist?(fortunes_book.file_path)
+        if fortunes_book.todays_fortunes.length > 0
+          puts "Press 1 to display this seance's fortunes, 2 to display all fortunes from your Book"
+          answer = gets.chomp.to_i
+          if answer == 1
+            puts fortunes_book.display_fortunes
+          elsif answer == 2
+            puts fortunes_book.read_from_file
+          end
+        else 
+          puts fortunes_book.read_from_file
+        end
+      end
       cassandra.clear_screen()
     when 3
       if File.exist?(fortunes_book.file_path)
@@ -79,7 +91,6 @@ cassandra.clear_screen
     else 
       raise ValidationError
     end
-    cassandra.clear_screen
   end
 # rescue
 #   puts "\nThe future is unclear. Try again later."

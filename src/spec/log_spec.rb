@@ -76,21 +76,12 @@ describe "log" do
     end
 
     it "should append to the file" do
-      2.times do 
-        fortune = @cassandra.tell_fortune
-        @log.add_fortune(fortune)
-      end
+      fortune = @cassandra.tell_fortune
+      @log.add_fortune(fortune)
       length = @log.read_from_file.length
-      @log.write_to_file
+      @log.write_to_file(fortune)
       expect(@log.read_from_file.length).to be > length
     end
-    
-    # it "should append the fortunes text to the file" do
-    #   fortune = @cassandra.tell_fortune
-    #   @log.add_fortune(fortune)
-      
-    # end
-
   end
 
   describe ".show_file_path" do
