@@ -39,6 +39,7 @@ system "clear"
 
 heading = Artii::Base.new :font => 'nancyj-underlined'
 puts heading.asciify('Cassandra')
+puts cassandra.image
 
 puts cassandra.greet(username)
 sleep 1.5

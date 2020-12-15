@@ -14,7 +14,7 @@ class FortuneTeller
   end
 
   def greet(username = "Traveller")
-    return "Hello and welcome #{username}! I am #{@name}, your most truthful fortune teller.\n\nI talk to the SPIRITS, and the SPIRITS never lie.\nAre you ready to look your destiny in the eye?\n"
+    return "I speak to the SPIRITS, and the SPIRITS never lie.\nAre you ready to look your destiny in the eye?\n"
   end
 
   def farewell(username = "Traveller")
@@ -46,5 +46,29 @@ class FortuneTeller
       gets
       self.clear_aura
       system "clear"
+  end
+
+  def image()
+    return "                     .---.
+                   .'_..._'.                Hello and welcome!
+                  .''_   _''.         
+                 .' :  '  : '.               I am Cassandra,        
+                .'_.-'_~_'-._'.              
+               .'(     '     )'.            your most truthful        
+              .'  \\ \\     / /  '.            fortune teller.
+             .'    \\ \\   / /    '.
+       ____________'''` '```____________
+      /              .''.               \\
+     /              (  ` )               \\
+    /               .'..'.                \\
+   /                '----'                 \\
+  /_________________________________________\\
+    \\  /'--'                       '--'\\  /
+     ||                                 ||
+     ||                                 ||
+    _||_                               _||_
+    '--'                               '--'  smd
+"
+
   end
 end
