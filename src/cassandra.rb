@@ -32,6 +32,8 @@ end
 
 cassandra = FortuneTeller.new("Cassandra")
 fortunes_book ||= Log.new("./logs/fortunes-from-cassandra.txt")
+notice = Pastel.new.bright_magenta.detach
+prompt = TTY::Prompt.new(active_color: notice) 
 
 system "clear"
 
@@ -44,8 +46,8 @@ sleep 1.5
 # Main programme loop
 # begin
   loop do
-    notice = Pastel.new.bright_magenta.detach
-    prompt = TTY::Prompt.new(active_color: notice) 
+    # notice = Pastel.new.bright_magenta.detach
+    # prompt = TTY::Prompt.new(active_color: notice) 
     choices = [
       {name: "What does my future hold", value: 1},
       {name: "Who was I in previous life", value: 2},
@@ -61,16 +63,14 @@ sleep 1.5
         puts fortune
         fortunes_book.add_fortune(fortune)
         sleep 2
-        puts "\nWould you like me to save it to your Fortunes Book? Y/N\n"
-        answer = gets.strip.downcase
-        if answer == "y" || answer == "yes"
+        answer = prompt.yes?("\nWould you like me to save it to your Fortunes Book?")
+        if answer == true
           fortunes_book.write_to_file(fortune)
           puts "\nDone!\n"
         end
         cassandra.clear_screen
-        puts "\nWould you like another fortune? Y/N\n"
-        input = gets.strip.downcase
-        break if input == "n" || input == "no"
+        answer = prompt.yes?("\nWould you like another prediction?")
+        break if answer == false
       end
       cassandra.clear_screen
     when 2
@@ -79,9 +79,8 @@ sleep 1.5
         puts previous_life
         fortunes_book.add_fortune(previous_life)
         sleep 2
-        puts "\nWould you like me to save it to your Fortunes Book? Y/N\n"
-        answer = gets.strip.downcase
-        if answer == "y" || answer == "yes"
+        answer = prompt.yes?("\nWould you like me to save it to your Fortunes Book?")
+        if answer == true
           fortunes_book.write_to_file(previous_life)
           puts "\nDone!\n"
         end
@@ -90,8 +89,11 @@ sleep 1.5
       cassandra.consult_spirits
       if File.exist?(fortunes_book.file_path)
         if fortunes_book.todays_fortunes.length > 0
-          puts "Press 1 to display this seance's fortunes, 2 to display all fortunes from your Book"
-          answer = gets.chomp.to_i
+          choices = [
+            {name: "This seance", value: 1},
+            {name: "The whole thing", value: 2},
+          ]
+          answer = prompt.select("\nDisplay fortunes for just this seance, or all fortunes from your Fortunes Book?", choices, symbols: { marker: "~" })
           if answer == 1
             puts fortunes_book.display_fortunes
           elsif answer == 2
@@ -102,15 +104,18 @@ sleep 1.5
         end
       end
       cassandra.clear_screen()
-    when 3
+    when 4
       if File.exist?(fortunes_book.file_path)
-        puts "\nWould you like to save your Fortunes Book? Y - keep /  N - delete\n"
-        answer = gets.strip.downcase
-        if answer == "y" || answer == "yes"
-          puts "\nSaved here: #{fortunes_book.show_file_path}\n"
-        elsif answer == "n" || answer == "no"
+        choices = [
+          {name: "Keep", value: 1},
+          {name: "Delete", value: 2},
+        ]
+        answer = prompt.select("\nKeep the fortunes book for your life guidance or delete it?", choices, symbols: { marker: "~" })
+        if answer == 1
+          puts "\nFind it here: #{fortunes_book.show_file_path}\n\n"
+        elsif answer == 2
           fortunes_book.delete_file
-          puts "\nFortunes Book deleted!\n"
+          puts "\nFortunes Book deleted!\n\n"
         end
       end
       cassandra.clear_aura

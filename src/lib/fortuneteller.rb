@@ -18,21 +18,8 @@ class FortuneTeller
   end
 
   def farewell(username = "Traveller")
-    return "\nI hope you found what you were looking for #{username}. Farewell!"
+    return "\n\nI hope you found what you were looking for #{username}. Farewell!"
   end
-
-  # def output_options()
-  #   notice = Pastel.new.bright_magenta.detach
-  #   prompt = TTY::Prompt.new(active_color: notice) 
-  #   choices = [
-  #     {name: "What does my future hold", value: 1},
-  #     {name: "Who was I in previous life", value: 2},
-  #     {name: "Display my fortunes", value: 3},
-  #     {name: "Bye Cassandra!", value: 4}
-  #   ]
-  #   answer = prompt.select("\nWhat can I do for you?", choices, symbols: { marker: "~" })
-  #   return answer
-  # end
 
   def clear_aura()
     progressbar = ProgressBar.create(title: "Clearning aura", unknown_progress_animation_steps: ['~~--', '-~~-', '--~~'], total: nil)
