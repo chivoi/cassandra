@@ -38,7 +38,6 @@ puts heading.asciify('Cassandra')
 
 puts cassandra.greet(username)
 sleep 1.5
-cassandra.clear_screen
 
 # Main programme loop
 # begin

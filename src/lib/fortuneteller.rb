@@ -1,6 +1,7 @@
 require_relative './previous_life'
 require 'ruby-progressbar'
 require 'httparty'
+require 'tty-prompt'
 
 class FortuneTeller
   include HTTParty
@@ -13,7 +14,7 @@ class FortuneTeller
   end
 
   def greet(username = "Traveller")
-    return "Hello and welcome #{username}! I am #{@name}, your most truthful fortune teller.\nI talk to the SPIRITS, and the SPIRITS never lie.\nAre you ready to look your destiny in the eye?\n"
+    return "Hello and welcome #{username}! I am #{@name}, your most truthful fortune teller.\n\nI talk to the SPIRITS, and the SPIRITS never lie.\nAre you ready to look your destiny in the eye?\n"
   end
 
   def farewell(username = "Traveller")
@@ -21,7 +22,15 @@ class FortuneTeller
   end
 
   def output_options()
-    return "Options:\n1) What does my future hold?\n2) Who was I in previous life?\n3) Display my fortunes\n4) Bye Cassandra\n"
+    prompt = TTY::Prompt.new 
+    prompt.select("\nWhat can I do for you?") do |menu|
+      menu.choice "What does my future hold", 1
+      menu.choice "Who was I in previous life", 2
+      menu.choice "Display my fortunes", 3
+      menu.choice "Bye Cassandra!", 4
+    end
+
+    # return "Options:\n1) What does my future hold?\n2) Who was I in previous life?\n3) Display my fortunes\n4) Bye Cassandra\n"
   end
 
   def clear_aura()

@@ -16,6 +16,7 @@ ruby-progressbar for the progress bar.
 terminal-table
 artii
 tty-markdown
+tty-prompt
 
 ## API-s
 
