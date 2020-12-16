@@ -100,7 +100,7 @@ describe "log" do
       expect(File).not_to exist(@log.file_path)
     end
 
-    File.open("./logs/test-log.txt", "w") {|file| file.write("The future is unclear")}
+    File.open("./logs/test-log.txt", "w+") {|file| file.write("The future is unclear")}
   end
 
 end
