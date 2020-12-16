@@ -12,8 +12,6 @@ if ARGV.length > 0
   ARGV.clear
   case flag 
   when '-h'
-    # help = File.readlines("../README.md")
-    # help.map{|line| puts line}
     parsed = TTY::Markdown.parse_file("../README.md")
     puts parsed
     exit
@@ -39,7 +37,8 @@ system "clear"
 
 heading = Artii::Base.new :font => 'nancyj-underlined'
 puts heading.asciify('Cassandra')
-puts cassandra.image
+puts File.readlines("./image.txt")
+# puts cassandra.image
 
 puts cassandra.greet(username)
 sleep 1.5
@@ -53,7 +52,7 @@ sleep 1.5
       {name: "What does my future hold", value: 1},
       {name: "Who was I in previous life", value: 2},
       {name: "Display my fortunes", value: 3},
-      {name: "Bye Cassandra!", value: 4}
+      {name: "Bye #{cassandra.name}!", value: 4}
     ]
     answer = prompt.select("\nWhat can I do for you?", choices, symbols: { marker: "~" })
     case answer
