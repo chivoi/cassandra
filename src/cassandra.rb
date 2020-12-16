@@ -74,12 +74,12 @@ sleep 1.5
       loop do
         puts cassandra.consult_spirits
         fortune = cassandra.tell_fortune
+        fortunes_book.add_fortune(fortune)
         system "clear"
-        box = TTY::Box.frame(width: 70, height: 8, align: :center, border: :ascii, padding: 2) do
+        box = TTY::Box.frame(width: 70, height: 8, align: :center, border: :ascii, padding: 1) do
           "#{fortune}"
         end
         puts Rainbow(box).mediumpurple
-        fortunes_book.add_fortune(fortune)
         answer = prompt.yes?("\nWould you like me to save it to your Fortunes Book?")
         if answer == true
           fortunes_book.write_to_file(fortune)

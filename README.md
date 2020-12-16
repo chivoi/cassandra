@@ -20,7 +20,7 @@ artii
 tty-markdown
 tty-prompt
 tty-box
-
+rainbow
 ## API-s
 
 - Quotable, for more details, [check the documentation](https://github.com/lukePeavey/quotable#get-random-quote)
