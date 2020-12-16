@@ -19,6 +19,7 @@ terminal-table
 artii
 tty-markdown
 tty-prompt
+tty-box
 
 ## API-s
 

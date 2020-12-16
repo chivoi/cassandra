@@ -22,7 +22,7 @@ class FortuneTeller
   end
 
   def clear_aura()
-    progressbar = ProgressBar.create(title: "Clearning aura", unknown_progress_animation_steps: ['~~--', '-~~-', '--~~'], total: nil)
+    progressbar = ProgressBar.create(title: "Clearing aura", unknown_progress_animation_steps: ['~~--', '-~~-', '--~~'], total: nil)
     20.times {progressbar.increment; sleep 0.1}
   end
   
@@ -47,28 +47,4 @@ class FortuneTeller
       self.clear_aura
       system "clear"
   end
-
-#   def image()
-#     return "                     .---.
-#                    .'_..._'.                Hello and welcome!
-#                   .''_   _''.         
-#                  .' :  '  : '.               I am Cassandra,        
-#                 .'_.-'_~_'-._'.              
-#                .'(     '     )'.            your most truthful        
-#               .'  \\ \\     / /  '.            fortune teller.
-#              .'    \\ \\   / /    '.
-#        ____________'''` '```____________
-#       /              .''.               \\
-#      /              (  ` )               \\
-#     /               .'..'.                \\
-#    /                '----'                 \\
-#   /_________________________________________\\
-#     \\  /'--'                       '--'\\  /
-#      ||                                 ||
-#      ||                                 ||
-#     _||_                               _||_
-#     '--'                               '--'  smd
-# "
-
-#   end
 end

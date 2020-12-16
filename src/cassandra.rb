@@ -5,6 +5,7 @@ require_relative './lib/errors'
 require_relative './lib/previous_life'
 require 'artii'
 require 'tty-markdown'
+require 'tty-box'
 
 # Handling command line arguments
 if ARGV.length > 0
@@ -46,8 +47,6 @@ sleep 1.5
 # Main programme loop
 # begin
   loop do
-    # notice = Pastel.new.bright_magenta.detach
-    # prompt = TTY::Prompt.new(active_color: notice) 
     choices = [
       {name: "What does my future hold", value: 1},
       {name: "Who was I in previous life", value: 2},
@@ -60,9 +59,18 @@ sleep 1.5
       loop do
         puts cassandra.consult_spirits
         fortune = cassandra.tell_fortune
-        puts fortune
+        system "clear"
+        box = TTY::Box.frame(width: 70, height: 8, align: :center, border: :ascii, padding: 2,
+            style: {
+            fg: :bright_magenta,
+            bg: :black,
+            border: {
+              fg: :bright_blue,
+              bg: :black}}) do
+          "#{fortune}"
+        end
+        puts box
         fortunes_book.add_fortune(fortune)
-        sleep 2
         answer = prompt.yes?("\nWould you like me to save it to your Fortunes Book?")
         if answer == true
           fortunes_book.write_to_file(fortune)
