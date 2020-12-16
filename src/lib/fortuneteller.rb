@@ -13,7 +13,7 @@ class FortuneTeller
     @name = name
   end
 
-  def greet(username = "Traveller")
+  def greet()
     return "I speak to the SPIRITS, and the SPIRITS never lie.\nAre you ready to look your destiny in the eye?\n"
   end
 

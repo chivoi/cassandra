@@ -6,6 +6,7 @@ require_relative './lib/previous_life'
 require 'artii'
 require 'tty-markdown'
 require 'tty-box'
+require 'rainbow/refinement'
 
 # Handling command line arguments
 if ARGV.length > 0
@@ -41,19 +42,21 @@ if ARGV.length > 0
   end
 end 
 
+# variables
 cassandra = FortuneTeller.new("Cassandra")
 fortunes_book ||= Log.new("./logs/fortunes-from-cassandra.txt")
 notice = Pastel.new.bright_magenta.detach
 prompt = TTY::Prompt.new(active_color: notice) 
 
+# main programme start
 system "clear"
 
 heading = Artii::Base.new :font => 'nancyj-underlined'
-puts heading.asciify('Cassandra')
+puts Rainbow(heading.asciify('Cassandra')).mediumpurple
 puts File.readlines("./image.txt")
 # puts cassandra.image
 
-puts cassandra.greet(username)
+puts Rainbow(cassandra.greet()).mediumpurple.italic
 sleep 1.5
 
 # Main programme loop
@@ -72,16 +75,10 @@ sleep 1.5
         puts cassandra.consult_spirits
         fortune = cassandra.tell_fortune
         system "clear"
-        box = TTY::Box.frame(width: 70, height: 8, align: :center, border: :ascii, padding: 2,
-            style: {
-            fg: :bright_magenta,
-            bg: :black,
-            border: {
-              fg: :bright_blue,
-              bg: :black}}) do
+        box = TTY::Box.frame(width: 70, height: 8, align: :center, border: :ascii, padding: 2) do
           "#{fortune}"
         end
-        puts box
+        puts Rainbow(box).mediumpurple
         fortunes_book.add_fortune(fortune)
         answer = prompt.yes?("\nWould you like me to save it to your Fortunes Book?")
         if answer == true
@@ -96,7 +93,7 @@ sleep 1.5
     when 2
       puts cassandra.consult_spirits
         previous_life = cassandra.tell_previous_life
-        puts previous_life
+        puts Rainbow(previous_life).mediumpurple
         fortunes_book.add_fortune(previous_life)
         sleep 2
         answer = prompt.yes?("\nWould you like me to save it to your Fortunes Book?")
@@ -139,7 +136,7 @@ sleep 1.5
         end
       end
       cassandra.clear_aura
-      puts cassandra.farewell
+      puts Rainbow(cassandra.farewell).italic.mediumpurple
       exit
     else 
       raise ValidationError
