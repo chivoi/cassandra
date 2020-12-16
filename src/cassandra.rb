@@ -60,7 +60,7 @@ puts Rainbow(cassandra.greet()).mediumpurple.italic
 sleep 1.5
 
 # Main programme loop
-# begin
+begin
   loop do
     choices = [
       {name: "What does my future hold", value: 1},
@@ -142,7 +142,7 @@ sleep 1.5
       raise ValidationError
     end
   end
-# rescue
-#   puts "\nThe future is unclear. Try again later."
-#   exit
-# end
+rescue
+  puts "\nThe future is unclear. Try again later."
+  exit
+end
