@@ -34,7 +34,7 @@ if ARGV.length > 0
   when '-n'
     username = rest[0]
   when '-v'
-    puts "This is Cassandra 0.0.1\nIt uses Ruby version: #{RUBY_VERSION}"
+    puts "This is Cassandra 0.0.1\nIt uses Ruby version #{RUBY_VERSION}"
     exit
   else
       puts "Enter valid argument:\n-h for programme info\n-v for version info\n-p file/path to pass in your previous fortunes\n-n YourName to let Cassandra know your name before your seance starts" 
