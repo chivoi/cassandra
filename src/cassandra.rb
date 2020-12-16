@@ -13,7 +13,19 @@ if ARGV.length > 0
   ARGV.clear
   case flag 
   when '-h'
-    parsed = TTY::Markdown.parse_file("../README.md")
+    parsed = TTY::Markdown.parse_file("../README.md", theme: { 
+      em: :bright_cyan,
+      header: [:bright_magenta, :bold],
+      hr: :bright_cyan,
+      link: [:bright_cyan, :underline],
+      list: :bright_cyan,
+      strong: [:bright_cyan, :bold],
+      table: :bright_blue,
+      quote: :bright_blue,
+      image: :bright_black,
+      note: :bright_cyan,
+      comment: :bright_black
+      })
     puts parsed
     exit
   when '-p'
