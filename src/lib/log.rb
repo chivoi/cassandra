@@ -6,7 +6,6 @@ class Log
   def initialize(file_path)
     @file_path = file_path
     @todays_fortunes = []
-    # @fortune = FortuneTeller.new("Cassandra").tell_fortune
   end
 
   def add_fortune(fortune)
@@ -25,7 +24,6 @@ class Log
       File.open("./logs/fortunes-from-cassandra.txt", "w") {|file| file.write("")}
       fortunes = @todays_fortunes
     end
-    return fortunes
   end
 
   def write_to_file(fortune)

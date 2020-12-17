@@ -48,10 +48,12 @@ gem "tty-prompt", "~> 0.23.0"
 gem "tty-box", "~> 0.6.0"
 
 gem "rainbow", "~> 3.0"
+
 ## API-s
 
 - [Quotable](https://github.com/lukePeavey/quotable#get-random-quote)
 - [Pipl](https://pipl.ir/)
+
 ## ASCII art
 
 Ascii art  was sourced on: https://ascii.co.uk/art/fortune , the characters 'smd' were kept in is as a credit to the author.

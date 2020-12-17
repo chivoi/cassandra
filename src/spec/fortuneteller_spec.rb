@@ -23,7 +23,7 @@ describe 'FortuneTeller' do
   end
 
   describe '.farewell' do
-    it "should display a greeting" do
+    it "should display a farewell message" do
       expect(@fortuneteller.farewell).to be_a String
     end
     it "should use the username" do
@@ -36,30 +36,17 @@ describe 'FortuneTeller' do
 
   describe '.progressbar' do
     it "should be an istance of a ProgressBar" do
-      expect(@fortuneteller.consult_spirits).to be_a Integer
-    end 
+      expect(@fortuneteller.progressbar("Message")).to be_a Integer
+    end
   end
 
-  # describe '.clear_aura' do
-  #   it "should display a progress bar" do
-  #     expect{ print(@fortuneteller.clear_aura) }.to output.to_stdout
-  #   end 
-  # end
-
   describe '.tell_fortune' do
-    it 'should be defined' do
-      expect(defined? @fortuneteller.tell_fortune).to eq('method')
-    end
-
     it 'should get a string quote from quotable API' do
       expect(@fortuneteller.tell_fortune).to be_a String
      end
   end
   
   describe '.tell_previous_life' do
-    it 'should be defined' do
-      expect(defined? @fortuneteller.tell_previous_life).to eq('method')
-    end
     it 'should return a table from PreviousLife class' do
       prevlife = PreviousLife.new
       expect(@fortuneteller.tell_previous_life).to be_a Terminal::Table

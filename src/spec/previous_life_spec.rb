@@ -11,10 +11,6 @@ describe 'PreviousLife' do
   end
 
   describe '.display_previous_life' do
-    it 'should be defined' do
-      expect(defined? @previous_life.display_previous_life).to eq('method')
-    end
-
     it 'should get information from API' do
       expect{print(@previous_life.display_previous_life)}.to output.to_stdout
      end

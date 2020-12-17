@@ -24,10 +24,6 @@ describe "log" do
   end
   
   describe ".add_fortune" do
-    it "should be defined" do
-      expect(defined? @log.add_fortune).to eq("method")
-    end
-    
     it "should increase the length of the array of fortunes" do
       length = @log.todays_fortunes.length
       fortune = @cassandra.tell_fortune
@@ -46,10 +42,6 @@ describe "log" do
   end
 
   describe ".read_from_file" do
-    it "should be defined" do
-      expect(defined? @log.read_from_file).to eq("method")
-    end
-
     it "should return an array from the contents of file" do
       expect(@log.read_from_file).to be_a Array
     end
@@ -71,10 +63,6 @@ describe "log" do
   end
 
   describe ".write_to_file" do
-    it "should be defined" do
-      expect(defined? @log.write_to_file).to eq("method")
-    end
-
     it "should append to the file" do
       fortune = @cassandra.tell_fortune
       @log.add_fortune(fortune)
@@ -91,10 +79,6 @@ describe "log" do
   end
 
   describe ".delete_file" do
-    it "should be defined" do
-      expect(defined? @log.delete_file).to eq("method")
-    end
-
     it "should delete the log file" do
       @log.delete_file
       expect(File).not_to exist(@log.file_path)

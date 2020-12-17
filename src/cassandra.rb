@@ -119,6 +119,8 @@ begin
         else 
           puts fortunes_book.read_from_file
         end
+      else 
+        puts Rainbow("\nNothing to display yet.").mediumpurple.italic
       end
       cassandra.clear_screen()
     when 4
@@ -129,14 +131,14 @@ begin
         ]
         answer = prompt.select("\nKeep the fortunes book for your life guidance or delete it?", choices, symbols: { marker: "~" })
         if answer == 1
-          puts "\nFind it here: #{fortunes_book.show_file_path}\n\n"
+          puts Rainbow("\nFind it here: #{fortunes_book.show_file_path}\n\n").mediumpurple.italic
         elsif answer == 2
           fortunes_book.delete_file
-          puts "\nFortunes Book deleted!\n\n"
+          puts Rainbow("\nFortunes Book deleted!\n\n").mediumpurple.italic
         end
       end
       cassandra.progressbar("Cleansing aura")
-      puts Rainbow(cassandra.farewell).italic.mediumpurple
+      puts Rainbow(cassandra.farewell(username)).italic.mediumpurple
       exit
     else 
       raise ValidationError
