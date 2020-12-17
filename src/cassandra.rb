@@ -71,7 +71,7 @@ begin
     case answer
     when 1 
       loop do
-        puts cassandra.consult_spirits
+        puts cassandra.progressbar("Consutling spirits")
         fortune = cassandra.tell_fortune
         fortunes_book.add_fortune(fortune)
         system "clear"
@@ -90,19 +90,20 @@ begin
       end
       cassandra.clear_screen
     when 2
-      puts cassandra.consult_spirits
-        previous_life = cassandra.tell_previous_life
-        puts Rainbow(previous_life).mediumpurple
-        fortunes_book.add_fortune(previous_life)
-        sleep 2
-        answer = prompt.yes?("\nWould you like me to save it to your Fortunes Book?")
-        if answer == true
-          fortunes_book.write_to_file(previous_life)
-          puts "\nDone!\n"
-        end
-        cassandra.clear_screen
+      puts cassandra.progressbar("Consulting spirits")
+      previous_life = cassandra.tell_previous_life
+      system "clear"
+      puts Rainbow(previous_life).mediumpurple
+      fortunes_book.add_fortune(previous_life)
+      sleep 2
+      answer = prompt.yes?("\nWould you like me to save it to your Fortunes Book?")
+      if answer == true
+        fortunes_book.write_to_file(previous_life)
+        puts "\nDone!\n"
+      end
+      cassandra.clear_screen
     when 3
-      cassandra.consult_spirits
+      cassandra.progressbar("Consulting spirits")
       if File.exist?(fortunes_book.file_path)
         if fortunes_book.todays_fortunes.length > 0
           choices = [
@@ -134,7 +135,7 @@ begin
           puts "\nFortunes Book deleted!\n\n"
         end
       end
-      cassandra.clear_aura
+      cassandra.progressbar("Cleansing aura")
       puts Rainbow(cassandra.farewell).italic.mediumpurple
       exit
     else 

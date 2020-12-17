@@ -1,4 +1,5 @@
 require_relative './previous_life'
+require_relative './fortuneteller'
 require 'ruby-progressbar'
 require 'httparty'
 require 'tty-prompt'
@@ -18,7 +19,7 @@ class FortuneTeller
   end
 
   def farewell(username = "Traveller")
-    return "\n\nI hope you found what you were looking for #{username}. Farewell!"
+    return "\n\nI hope you found what you were looking for, #{username}. Farewell!\n"
   end
 
   def progressbar(message)
@@ -39,7 +40,7 @@ class FortuneTeller
   def clear_screen()
     puts "\nPress any key to continue"
       gets
-      self.clear_aura
+      self.progressbar("Cleansing aura")
       system "clear"
   end
 end
