@@ -34,17 +34,17 @@ describe 'FortuneTeller' do
     end
   end
 
-  describe '.consult_spirits' do
-    it "should display a progress bar" do
-      expect{ print(@fortuneteller.consult_spirits) }.to output.to_stdout
+  describe '.progressbar' do
+    it "should be an istance of a ProgressBar" do
+      expect(@fortuneteller.consult_spirits).to be_a Integer
     end 
   end
 
-  describe '.clear_aura' do
-    it "should display a progress bar" do
-      expect{ print(@fortuneteller.clear_aura) }.to output.to_stdout
-    end 
-  end
+  # describe '.clear_aura' do
+  #   it "should display a progress bar" do
+  #     expect{ print(@fortuneteller.clear_aura) }.to output.to_stdout
+  #   end 
+  # end
 
   describe '.tell_fortune' do
     it 'should be defined' do

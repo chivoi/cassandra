@@ -21,13 +21,8 @@ class FortuneTeller
     return "\n\nI hope you found what you were looking for #{username}. Farewell!"
   end
 
-  def clear_aura()
-    progressbar = ProgressBar.create(title: "Clearing aura", unknown_progress_animation_steps: ['~~--', '-~~-', '--~~'], total: nil)
-    20.times {progressbar.increment; sleep 0.1}
-  end
-  
-  def consult_spirits()
-    progressbar = ProgressBar.create(title: "Consulting spirits", unknown_progress_animation_steps: ['~~--', '-~~-', '--~~'], total: nil)
+  def progressbar(message)
+    progressbar = ProgressBar.create(title: message, unknown_progress_animation_steps: ['~~--', '-~~-', '--~~'], total: nil)
     20.times {progressbar.increment; sleep 0.1}
   end
 
