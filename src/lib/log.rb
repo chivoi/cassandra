@@ -6,7 +6,7 @@ class Log
   def initialize(file_path)
     @file_path = file_path
     @todays_fortunes = []
-    @fortune = FortuneTeller.new("Cassandra").tell_fortune
+    # @fortune = FortuneTeller.new("Cassandra").tell_fortune
   end
 
   def add_fortune(fortune)

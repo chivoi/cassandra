@@ -54,7 +54,6 @@ system "clear"
 heading = Artii::Base.new :font => 'nancyj-underlined'
 puts Rainbow(heading.asciify('Cassandra')).mediumpurple
 puts File.readlines("./image.txt")
-# puts cassandra.image
 
 puts Rainbow(cassandra.greet()).mediumpurple.italic
 sleep 1.5
@@ -64,7 +63,7 @@ begin
   loop do
     choices = [
       {name: "What does my future hold", value: 1},
-      {name: "Who was I in previous life", value: 2},
+      {name: "Who was I in past life", value: 2},
       {name: "Display my fortunes", value: 3},
       {name: "Bye #{cassandra.name}!", value: 4}
     ]
