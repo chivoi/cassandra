@@ -1,10 +1,10 @@
                      .---.
-                   .'_..._'.                Hello and welcome!
+                   .'_..._'.                   Hello and welcome!
                   .''_   _''.         
-                 .' :  '  : '.               I am Cassandra,        
-                .'_.-'_~_'-._'.              
-               .'(     '     )'.            your most truthful        
-              .'  \ \     / /  '.             fortune teller.
+                 .' :  '  : '.                      It is I,     
+                .'_.-'_~_'-._'.                 your most truthful
+               .'(     '     )'.                 fortune teller.
+              .'  \ \     / /  '.             
              .'    \ \   / /    '.
        ____________'''` '```____________
       /              .''.               \
