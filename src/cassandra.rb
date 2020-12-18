@@ -6,7 +6,8 @@ require_relative './lib/previous_life'
 require 'artii'
 require 'tty-markdown'
 require 'tty-box'
-require 'rainbow/refinement'
+require 'rainbow'
+require 'tty-screen'
 
 # Handling command line arguments
 if ARGV.length > 0
@@ -46,13 +47,20 @@ end
 cassandra = FortuneTeller.new("Cassandra")
 fortunes_book ||= Log.new("./logs/fortunes-from-cassandra.txt")
 notice = Pastel.new.bright_magenta.detach
-prompt = TTY::Prompt.new(active_color: notice) 
+prompt = TTY::Prompt.new(active_color: notice)
+screen_width = TTY::Screen.cols
+
+# making the heading responsive to the terminal window width
+if screen_width < 82
+  heading = Artii::Base.new :font => 'thin'
+else
+  heading = Artii::Base.new :font => 'nancyj-underlined'
+end
 
 # main programme start
 system "clear"
 
-heading = Artii::Base.new :font => 'nancyj-underlined'
-puts Rainbow(heading.asciify('Cassandra')).mediumpurple
+puts Rainbow(heading.asciify(cassandra.name)).mediumpurple
 puts File.readlines("./image.txt")
 
 puts Rainbow(cassandra.greet()).mediumpurple.italic

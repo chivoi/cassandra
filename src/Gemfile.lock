@@ -76,6 +76,7 @@ DEPENDENCIES
   tty-box (~> 0.6.0)
   tty-markdown (~> 0.7.0)
   tty-prompt (~> 0.23.0)
+  tty-screen (~> 0.8.1)
 
 BUNDLED WITH
    2.1.4

@@ -49,6 +49,8 @@ gem "tty-box", "~> 0.6.0"
 
 gem "rainbow", "~> 3.0"
 
+gem "tty-screen", "~> 0.8.1"
+
 ## API-s
 
 - [Quotable](https://github.com/lukePeavey/quotable#get-random-quote)
