@@ -6,21 +6,27 @@ To have a better experience, switch your terminal window to **full screen**.
 
 Github repository: <https://github.com/chivoi/cassandra>
 
-## Installation
+## Installation and Execution
 
-To run the app you need to install Ruby, I used version 2.7.1. Head to [the docs](https://www.ruby-lang.org/en/documentation/installation/) for the detailed instrucitons.
+To install everyhting needed to run Cassandra, run this script in your terminal:
+```
+$ ./install.sh
+```
+It will install homebrew, current Ruby version, clone this repository to your local machine, install bundler and all gem dependencies.
 
-Then, clone this repository to your local machine:
-```
-$ git clone https://github.com/chivoi/cassandra.git
-```
-Then, install the gem dependencies with [bundler](https://bundler.io/)
-```
-$ bundle install
-```
-...or any other way you prefer it. After this, you should be ready to go!
+To run the programme in the default mode, run this command:
 
-## Command line options
+```
+$ ./run.sh
+```
+
+To run the programme with command line arguments:
+
+```
+ruby cassandra.rb -yourargument
+```
+
+## Command line arguments
 
 Cassandra accepts following command line arguments: 
 
