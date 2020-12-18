@@ -82,10 +82,18 @@ begin
         fortune = cassandra.tell_fortune
         fortunes_book.add_fortune(fortune)
         system "clear"
-        # outputting the fortune to screen
-        box = TTY::Box.frame(width: 70, height: 8, align: :center, border: :ascii, padding: 1) do
+        # making the box with the fortune responsive
+        if screen_width <= 70 
+          box_width = 45
+          box_height = 15 
+        else 
+          box_width = 70
+          box_height = 9
+        end
+        box = TTY::Box.frame(width: box_width, height: box_height, align: :center, border: :ascii, padding: 1) do
           "#{fortune}"
         end
+        # outputting the fortune to the screen
         puts Rainbow(box).mediumpurple
         # prompting the user to save or don't save the fortune
         answer = prompt.yes?("\nWould you like me to save it to your Fortunes Book?")

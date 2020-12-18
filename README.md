@@ -99,4 +99,4 @@ When the user have received their fortunes or previous life readings, they are p
 - Handles command line arguments
 - With -f argument the fortuneteller can be renamed from Cassandra to anything you like
 - With -h argument, parses the README file in customized colour scheme
-- Responsive: changes the ascii header font and adds/removes ascii image depending on a width of a terminal screen.
+- Responsive: changes the ascii header font and adds/removes ascii image depending on a width of a terminal screen, changes the size of the fortune box depending on the screen size.
