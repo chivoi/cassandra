@@ -51,17 +51,13 @@ prompt = TTY::Prompt.new(active_color: notice)
 screen_width = TTY::Screen.cols
 
 # making the heading responsive to the terminal window width
-if screen_width < 82
-  heading = Artii::Base.new :font => 'thin'
-else
-  heading = Artii::Base.new :font => 'nancyj-underlined'
-end
+screen_width < 82 ? (heading = Artii::Base.new :font => 'thin') : (heading = Artii::Base.new :font => 'nancyj-underlined')
 
 # main programme start
 system "clear"
 
 puts Rainbow(heading.asciify(cassandra.name)).mediumpurple
-puts File.readlines("./image.txt")
+puts File.readlines("./image.txt") if screen_width > 68
 
 puts Rainbow(cassandra.greet()).mediumpurple.italic
 sleep 1.5

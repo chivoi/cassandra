@@ -97,3 +97,5 @@ When the user have received their fortunes or previous life readings, they are p
 - Display greeting message
 - Handles Standard error and Validation Error
 - Handles command line arguments
+- With -h argument, parses the README file in customized colour scheme
+- Responsive: changes the ascii header font and adds/removes ascii image depending on a width of a terminal screen.
