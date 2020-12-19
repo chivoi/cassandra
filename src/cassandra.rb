@@ -56,7 +56,13 @@ screen_width = TTY::Screen.cols
 # making the heading responsive to the terminal window width
 screen_width < 82 ? (heading = Artii::Base.new :font => 'thin') : (heading = Artii::Base.new :font => 'nancyj-underlined')
 
-# main programme start - greeting
+# main programme starts
+# getting the username if non yet passed
+if !username 
+  puts "Please enter your name:" 
+  username = gets.strip
+end 
+# displaying a header
 system "clear"
 puts Rainbow(heading.asciify(cassandra.name)).mediumpurple
 # outputting image from the txt file if the screen is wide enough
@@ -73,7 +79,7 @@ begin
       {name: "Display my fortunes", value: 3},
       {name: "Bye #{cassandra.name}!", value: 4}
     ]
-    answer = prompt.select("\nWhat can I do for you?", choices, symbols: { marker: "~" })
+    answer = prompt.select("\nWhat can I do for you, #{username}?", choices, symbols: { marker: "~" })
     case answer
     when 1 
       loop do

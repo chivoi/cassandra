@@ -18,7 +18,7 @@ class FortuneTeller
     return "I speak to the SPIRITS, and the SPIRITS never lie.\nAre you ready to look your destiny in the eye?\n"
   end
 
-  def farewell(username = "Traveller")
+  def farewell(username)
     return "\n\nI hope you found what you were looking for, #{username}. Farewell!\n"
   end
 

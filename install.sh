@@ -10,5 +10,7 @@ git clone https://github.com/chivoi/cassandra.git
 gem install bundler
 #install gem dependencies
 bundle install
+#moving to src folder
+cd src
 #success message
-echo Success!
+echo Success! You can run ./run.sh to run the programme, or ruby cassandra.rb to run it with command line arguments.
