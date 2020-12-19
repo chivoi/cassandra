@@ -32,7 +32,7 @@ if ARGV.length > 0
     puts parsed
     exit
   when '-p'
-    file_path = Log.new(rest[0])
+    fortunes_book = Log.new(rest[0])
   when '-n'
     username = rest[0]
   when '-f'

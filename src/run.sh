@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ruby cassandra.rb
+ruby cassandra.rb $1 $2
