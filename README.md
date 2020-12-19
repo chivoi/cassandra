@@ -1,4 +1,4 @@
-# Cassandra: your most truthful fortune teller app
+* # Cassandra: your most truthful fortune teller app
 
 Cassandra tells you your fortune or who you were in your past life. After you've heard enough, you can look back at all of your fortunes and save them in a file.
 
@@ -13,24 +13,25 @@ Bundler version 2.1.4 was used for gem dependencies management.
 RSpec 3.10.0 was used for automated testing.
 ## Installation and Execution
 
-To install everyhting needed to run Cassandra, run this script in your terminal:
+To install everyhting needed to run Cassandra, clone this repo to your local machine:
+```
+$ git clone https://github.com/chivoi/cassandra.git
+```
+Then go to your terminal, `cd` into the `path-to-folder/cassandra/src` directory and run this script in your terminal:
 ```
 $ ./install.sh
 ```
-It will install homebrew, current Ruby version, clone this repository to your local machine, install bundler and all gem dependencies.
+It will install homebrew, current Ruby version, bundler and all gem dependencies.
 
-To run the programme in the default mode, run this command from the src folder:
-
+To run the programme you can either run
 ```
-$ ./run.sh
+ruby cassandra.rb
 ```
-
-To run the programme with command line arguments:
-
+or 
 ```
-ruby cassandra.rb -yourargument
+$ ./cassandra.sh
 ```
-
+Command line arguments can be passes to either of those.
 ## Command line arguments
 
 Cassandra accepts following command line arguments: 
@@ -66,7 +67,7 @@ Gem             | Version|
 
 Ascii art  was sourced on: https://ascii.co.uk/art/fortune , the characters 'smd' were kept in is as a credit to the author.
 
-## Purpose and scope - need to write more
+## Purpose and scope
 
 When I was a kid back home in Russia, we used to play fortune-tellers with my cousin all the time. We would do card readings (the usual) or "book" readings: pick up a random book, the "client", would choose the page and the line, and the "fortune-teller" would go to that page and line and read out a quote, which was supposed to indicate what the client is to expect in the future or focus on in the present.
 
