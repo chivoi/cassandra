@@ -1,4 +1,4 @@
-* # Cassandra: your most truthful fortune teller app
+# Cassandra: your most truthful fortune teller
 
 Cassandra tells you your fortune or who you were in your past life. After you've heard enough, you can look back at all of your fortunes and save them in a file.
 
@@ -17,7 +17,7 @@ To install everyhting needed to run Cassandra, clone this repo to your local mac
 ```
 $ git clone https://github.com/chivoi/cassandra.git
 ```
-Then go to your terminal, `cd` into the `path-to-folder/cassandra/src` directory and run this script in your terminal:
+Then `cd` into the `path-to-folder/cassandra/src` directory and run this script:
 ```
 $ ./install.sh
 ```
@@ -69,9 +69,9 @@ Ascii art  was sourced on: https://ascii.co.uk/art/fortune , the characters 'smd
 
 ## Purpose and scope
 
-When I was a kid back home in Russia, we used to play fortune-tellers with my cousin all the time. We would do card readings (the usual) or "book" readings: pick up a random book, the "client", would choose the page and the line, and the "fortune-teller" would go to that page and line and read out a quote, which was supposed to indicate what the client is to expect in the future or focus on in the present.
+When I was a kid back home in Russia, we used to play fortune tellers with my cousin all the time. We would do card readings (the usual) or "book" readings: pick up a random book, the "client", would choose the page and the line, and the "fortune teller" would go to that page and line and read out a quote, which was supposed to indicate what the client is to expect in the future or focus on in the present.
 
-Cassandra is a fortune-teller app that was inspired by that game I played with my cousin. She can give user a prediction using famous quotes, tell the user who they were in past life, as well as create, read, delete and write into a fortunes log for their further reference.
+Cassandra is a fortune teller app that was inspired by that game I played with my cousin. She can give user a prediction using famous quotes, tell the user who they were in past life, as well as create, read, delete and write into a fortunes log for their further reference.
 
 This app in a way is a mental health aid for the people in need. Unlike the real life fortune-tellers, Cassandra's advices and predictions are mostly motivational. The app was created solely for intertainment, so it can help people be intertained whenever they feel like it. Or, if they are a believer in fortune-telling and predictions and feel a bit uncertain in life, Cassandra can help them receive some meaningful guidance. After all, one can argue that nothing that comes to our life is really random, including fortunes from a little terminal app.
 
@@ -101,7 +101,7 @@ When the user have received their fortunes or previous life readings, they are p
 - Display goodbye message
 - Display greeting message
 - Handles Standard error and Validation Error
-- Handles fivr command line arguments
+- Handles five command line arguments
 - With -f argument the fortuneteller can be renamed from Cassandra to anything you like
 - With -h argument, parses the README file in customized colour scheme
 - Responsive: changes the ascii header font and adds/removes ascii image depending on a width of a terminal screen, changes the size of the fortune box depending on the screen size.
@@ -110,7 +110,7 @@ When the user have received their fortunes or previous life readings, they are p
 
 **How the user will find out how to interact with / use each feature***
 
-There is a convenient `install.sh` bash script that will install everyhting necessary for the user to run the programme. There is also a runner script `run.sh` for the easier running of the app.
+There is a convenient `install.sh` bash script that will install everyhting necessary for the user to run the programme. There is also a runner script `cassandra.sh` for the easier running of the app.
 After the user runs the app, all user interaction are driven with prompts. Right away after starting the programme, the user sees menu options, which also has a prompt on how to use it (move cursor with up and down arrows and select with 'enter' key). Throughout the session, the prompts will appear after every option is executed.
 
 **How the user will interact with / use each feature**
@@ -126,12 +126,13 @@ When they select _"Display my fortunes"_, depending on whether they have a log f
 Finally, when they select _"Bye ..."_, depending on whether they have the log file or not, they can choose to save or delete the log file.
 
 **How errors will be handled by the application and displayed to the user**
+
 In case anything goes wrong at any time in the main programme loop, the StandardError is handled with the message "The future is unclear. Try again later".
 Regarding input and validation errors, TTY prompt has an inbuilt functionality to handle them. In case it gets broken, there is a ValidationError class, and the ValidationError will be raised with a custom message "You should be very clear while talking to spirits! Please choose the valid option".
 
 ## Control flow diagram
 
-![Control flow diagram](./docs/flowchart.png)
+![Control flow diagram](./docs/Flowchart.png)
 
 ## Implementation plan
 
